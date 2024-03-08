@@ -1,0 +1,925 @@
+Program.Sub.ScreenSU.Start
+gui.frmISS..create
+gui.frmISS..caption("Import")
+gui.frmISS..size(2880,2295)
+gui.frmISS..minx(0)
+gui.frmISS..miny(0)
+gui.frmISS..position(0,0)
+gui.frmISS..event(unload,form1_unload)
+gui.frmISS..alwaysontop(False)
+gui.frmISS..fontname("Arial")
+gui.frmISS..fontsize(8)
+gui.frmISS..forecolor(0)
+gui.frmISS..fontstyle(,,,,)
+gui.frmISS..BackColor(-2147483633)
+gui.frmISS..controlbox(True)
+gui.frmISS..maxbutton(False)
+gui.frmISS..minbutton(False)
+gui.frmISS..mousepointer(0)
+gui.frmISS..moveable(True)
+gui.frmISS..sizeable(False)
+gui.frmISS..ShowInTaskBar(True)
+gui.frmISS..titlebar(True)
+gui.frmISS.lbl1.create(label,"Date From",True,1935,255,1,110,200,True,0,Arial,8,-2147483633,0)
+gui.frmISS.lbl1.defaultvalue("")
+gui.frmISS.lbl1.controlgroup(0)
+gui.frmISS.lbl2.create(label,"Date To",True,1935,255,1,100,700,True,0,Arial,8,-2147483633,0)
+gui.frmISS.lbl2.defaultvalue("")
+gui.frmISS.lbl2.controlgroup(0)
+gui.frmISS.cmdImport.create(button)
+gui.frmISS.cmdImport.caption("&Import")
+gui.frmISS.cmdImport.visible(True)
+gui.frmISS.cmdImport.size(855,375)
+gui.frmISS.cmdImport.zorder(0)
+gui.frmISS.cmdImport.position(110,1265)
+gui.frmISS.cmdImport.enabled(True)
+gui.frmISS.cmdImport.fontname("Arial")
+gui.frmISS.cmdImport.fontsize(8)
+gui.frmISS.cmdImport.event(click,Import)
+gui.frmISS.cmdImport.defaultvalue("")
+gui.frmISS.cmdImport.controlgroup(0)
+gui.frmISS.dtFrom.create(datepicker)
+gui.frmISS.dtFrom.visible(True)
+gui.frmISS.dtFrom.size(1365,285)
+gui.frmISS.dtFrom.zorder(0)
+gui.frmISS.dtFrom.position(960,185)
+gui.frmISS.dtFrom.enabled(True)
+gui.frmISS.dtFrom.checkbox(False)
+gui.frmISS.dtFrom.defaultvalue("")
+gui.frmISS.dtFrom.controlgroup(0)
+gui.frmISS.dtTo.create(datepicker)
+gui.frmISS.dtTo.visible(True)
+gui.frmISS.dtTo.size(1365,285)
+gui.frmISS.dtTo.zorder(0)
+gui.frmISS.dtTo.position(960,690)
+gui.frmISS.dtTo.enabled(True)
+gui.frmISS.dtTo.checkbox(False)
+gui.frmISS.dtTo.defaultvalue("")
+gui.frmISS.dtTo.controlgroup(0)
+
+
+gui.frmconfirm..create
+gui.frmconfirm..caption("Confirm")
+gui.frmconfirm..size(4140,1290)
+gui.frmconfirm..minx(0)
+gui.frmconfirm..miny(0)
+gui.frmconfirm..position(0,0)
+gui.frmconfirm..event(unload,form1_unload)
+gui.frmconfirm..alwaysontop(False)
+gui.frmconfirm..fontname("Arial")
+gui.frmconfirm..fontsize(8)
+gui.frmconfirm..forecolor(0)
+gui.frmconfirm..fontstyle(,,,,)
+gui.frmconfirm..BackColor(-2147483633)
+gui.frmconfirm..controlbox(True)
+gui.frmconfirm..maxbutton(False)
+gui.frmconfirm..minbutton(False)
+gui.frmconfirm..mousepointer(0)
+gui.frmconfirm..moveable(True)
+gui.frmconfirm..sizeable(True)
+gui.frmconfirm..ShowInTaskBar(True)
+gui.frmconfirm..titlebar(True)
+gui.frmconfirm.cmdlog.create(button)
+gui.frmconfirm.cmdlog.caption("View Error Log")
+gui.frmconfirm.cmdlog.visible(True)
+gui.frmconfirm.cmdlog.size(1380,375)
+gui.frmconfirm.cmdlog.zorder(0)
+gui.frmconfirm.cmdlog.position(200,200)
+gui.frmconfirm.cmdlog.enabled(False)
+gui.frmconfirm.cmdlog.fontname("Arial")
+gui.frmconfirm.cmdlog.fontsize(8)
+gui.frmconfirm.cmdlog.event(click,cmdlog_click)
+gui.frmconfirm.cmdlog.defaultvalue("")
+gui.frmconfirm.cmdlog.controlgroup(0)
+gui.frmconfirm.cmdIssue.create(button)
+gui.frmconfirm.cmdIssue.caption("Continue Issue Material")
+gui.frmconfirm.cmdIssue.visible(True)
+gui.frmconfirm.cmdIssue.size(1905,375)
+gui.frmconfirm.cmdIssue.zorder(0)
+gui.frmconfirm.cmdIssue.position(1820,200)
+gui.frmconfirm.cmdIssue.enabled(False)
+gui.frmconfirm.cmdIssue.fontname("Arial")
+gui.frmconfirm.cmdIssue.fontsize(8)
+gui.frmconfirm.cmdIssue.event(click,cmdissue_click)
+gui.frmconfirm.cmdIssue.defaultvalue("")
+gui.frmconfirm.cmdIssue.controlgroup(0)
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Variable.UDT.uISS.Define("Part",String)
+Variable.UDT.uISS.Define("WO",String)
+Variable.UDT.uISS.Define("Empl",String)
+Variable.UDT.uISS.Define("Name",String)
+Variable.UDT.uISS.Define("desc",String)
+Variable.UDT.uISS.Define("date",Date)
+Variable.UDT.uISS.Define("Qty",Float)
+Variable.UDT.uISS.Define("Suf",String)
+Variable.UDT.uISS.Define("Row",Long)
+Variable.UDT.uISS.Define("Seq",String)
+Variable.UDT.uISS.Define("Loc",String)
+Variable.UDT.uISS.Define("Lot",String)
+Variable.UDT.uISS.Define("Bin",String)
+Variable.UDT.uISS.Define("Heat",String)
+Variable.UDT.uISS.Define("Serial",String)
+Variable.UDT.uISS.Define("BIRUNID",Long)
+Variable.uGlobal.uISS.Declare("uISS")
+
+Variable.UDT.uLotBin.Define("Part",String)
+Variable.UDT.uLotBin.Define("WO",String)
+Variable.UDT.uLotBin.Define("Empl",String)
+Variable.UDT.uLotBin.Define("Name",String)
+Variable.UDT.uLotBin.Define("desc",String)
+Variable.UDT.uLotBin.Define("date",Date)
+Variable.UDT.uLotBin.Define("Qty",Float)
+Variable.UDT.uLotBin.Define("Suf",String)
+Variable.UDT.uLotBin.Define("Row",Long)
+Variable.UDT.uLotBin.Define("Seq",String)
+Variable.UDT.uLotBin.Define("Loc",String)
+Variable.UDT.uLotBin.Define("Lot",String)
+Variable.UDT.uLotBin.Define("Bin",String)
+Variable.UDT.uLotBin.Define("Heat",String)
+Variable.UDT.uLotBin.Define("Serial",String)
+Variable.UDT.uLotBin.Define("BIRUNID",Long)
+Variable.uGlobal.uLotBin.Declare("uLotBin")
+
+
+Variable.UDT.uError.Define("WO",String)
+Variable.UDT.uError.Define("Part",String)
+Variable.UDT.uError.Define("Seq",String)
+Variable.UDT.uError.Define("Stock",String)
+Variable.UDT.uError.Define("Row",Long)
+Variable.UDT.uError.Define("seqflag",String)
+Variable.uGlobal.uError.Declare("uError")
+
+
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+Gui.frmISS..Show
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3778_IssueMat.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Main.End
+
+Program.Sub.Import.Start
+F.Intrinsic.Control.SetErrorHandler("Import_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+
+V.Local.sRet.Declare(String)
+V.Local.sHeaderRow.Declare(String)
+V.Local.i.Declare(Long)
+V.Local.sRow.Declare(String)
+V.Local.sRowSplit.Declare(String)
+V.Local.iRows.Declare(Long)
+V.Local.sTempRouter.Declare(String)
+V.Local.sFinalRouter.Declare(String)
+V.Local.sSQL.Declare(String)
+V.Local.iRet.Declare(Long)
+V.Local.sFile.Declare(String)
+
+V.Local.sCond1.Declare(String)
+V.Local.sCond2.Declare(String)
+V.Local.lcounter.Declare(Long)
+V.Local.bEnt.Declare(Boolean)
+V.Local.iUB.Declare(Long)
+V.Local.sTemp.Declare(String)
+V.Local.iRow.Declare(Long)
+
+V.uGlobal.uError.Redim(-1,-1)
+V.uGlobal.uISS.Redim(-1,-1)
+V.uGlobal.uLotBin.Redim(-1,-1)
+
+
+'SHOW OPEN FILE DIALOG
+Function.Intrinsic.UI.ShowOpenFileDialog("","*.xls","C:\",V.Local.sRet)
+Function.Intrinsic.Control.If(V.Local.sRet,<>,"***CANCEL***")
+
+
+
+	Function.Intrinsic.UI.InvokeWaitDialog("Importing data. please wait ...")
+	Gui.frmISS..MousePointer(11)
+	Function.Automation.MSExcel.CreateAppObject("EXCEL")
+	Function.Automation.MSExcel.OpenWorkbook("EXCEL","BOOK",V.Local.sRet)
+	Function.Automation.MSExcel.OpenWorksheet("BOOK","SHEET",1)
+
+	Function.Automation.MSExcel.RowCount("SHEET",V.Local.iRows)
+
+	Function.ODBC.Connection!Conx.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass,7200)
+	F.Intrinsic.Control.For(V.Local.i,2,V.Local.iRows,1)
+		Function.Automation.MSExcel.ReadRow("SHEET",V.Local.i,1,8,V.Local.sRow)
+
+		F.Intrinsic.String.Build("{0}",V.Local.sRow,V.Local.sRow)
+'	
+		F.Intrinsic.Variable.LoadUDTFromString(V.uGlobal.uISS,"DATE*!*Empl*!*Name*!*part*!*desc*!*wo*!*SUF*!*QTY",V.Local.sRow,"$!$","*!*",True)
+	Function.Intrinsic.Control.Next(V.Local.i)
+
+	F.Intrinsic.String.Build(">=::{0}",V.Screen.frmISS!dtFrom.Value,V.Local.sCond1)
+	F.Intrinsic.String.Build("<=::{0}",V.Screen.frmISS!dtTo.Value,V.Local.sCond2)
+
+	V.Local.iRow.set(1)
+	F.Intrinsic.Control.For(V.Local.i,0,V.uGlobal.uISS.UBound,1)
+			F.Intrinsic.Math.Add(V.Local.iRow,1,V.Local.iRow)
+			V.uGlobal.uISS(V.Local.i)!row.Set(V.Local.iRow)
+	F.Intrinsic.Control.Next(V.Local.i)
+
+	Function.Intrinsic.Variable.UDTFlagAll(V.uGlobal.uISS)
+	F.Intrinsic.Variable.UDTMultiUnFlag(V.uGlobal.uISS!date,V.Local.sCond1,V.uGlobal.uISS!date,V.Local.sCond2)
+	F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uISS)
+
+	F.Intrinsic.Control.if(V.uGlobal.uISS.UBound,<>,-1)
+		F.Intrinsic.Control.For(V.Local.i,0,V.uGlobal.uISS.UBound,1)
+			V.Local.bEnt.Set(False)
+			F.Intrinsic.Control.If(V.uGlobal.uISS(v.Local.i)!Suf,<>,"0.0000000000")
+				F.Intrinsic.String.Build("{0}{1}",V.uGlobal.uISS(V.Local.i)!WO.trim,V.uGlobal.uISS(V.Local.i)!Suf.trim,V.Local.sTemp)
+			F.Intrinsic.Control.Else
+				F.Intrinsic.String.Build("{0}{1}",V.uGlobal.uISS(V.Local.i)!WO.trim,"000",V.Local.sTemp)
+				V.uGlobal.uISS(V.Local.i)!Suf.Set("000")
+			F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.CallSub(Wo_check,"WO",V.Local.sTemp)
+			F.Intrinsic.Control.If(V.Args.Return,=,"True")
+				Function.Intrinsic.Control.If(V.uGlobal.uError.UBound,=,-1)
+					V.Local.iUB.Set(0)
+					V.uGlobal.uError.Redim(0,0)
+				F.Intrinsic.Control.Else
+					F.Intrinsic.Math.Add(V.uGlobal.uError.UBound,1,V.Local.iUB)
+					V.uGlobal.uError.RedimPreserve(0,V.Local.iUB)
+				F.Intrinsic.Control.EndIf
+					
+				V.uGlobal.uError(v.Local.iUB)!Row.Set(V.uGlobal.uISS(v.Local.i)!Row)
+				V.uGlobal.uError(v.Local.iUB)!WO.Set("WO doesn't Exist")
+				V.Local.bEnt.Set(True)
+				F.Intrinsic.Control.GoTo("Error")
+			F.Intrinsic.Control.EndIf
+
+			F.Intrinsic.Control.CallSub(Seq_check,"MatSeq",V.uGlobal.uISS(V.Local.i)!Part,"WO",V.Local.sTemp)
+			F.Intrinsic.Control.If(V.Args.Return,=,"True")
+				F.Intrinsic.Control.If(V.Local.bEnt,=,False)
+					Function.Intrinsic.Control.If(V.uGlobal.uError.UBound,=,-1)
+						V.Local.iUB.Set(0)
+						V.uGlobal.uError.Redim(0,0)
+					F.Intrinsic.Control.Else
+						F.Intrinsic.Math.Add(V.uGlobal.uError.UBound,1,V.Local.iUB)
+						V.uGlobal.uError.RedimPreserve(0,V.Local.iUB)
+					F.Intrinsic.Control.EndIf
+
+					V.uGlobal.uError(v.Local.iUB)!Row.Set(V.uGlobal.uISS(v.Local.i)!Row)
+					V.Local.bEnt.Set(True)
+					F.Intrinsic.Control.GoTo("Error")
+				F.Intrinsic.Control.EndIf
+
+				V.uGlobal.uError(v.Local.iUB)!Seq.Set("Matching material sequence does not exist in the Work order")
+				V.Local.bEnt.Set(True)
+			F.Intrinsic.Control.elseIf(V.Args.Return,=,"TT")
+				F.Intrinsic.Control.If(V.Local.bEnt,=,False)
+					Function.Intrinsic.Control.If(V.uGlobal.uError.UBound,=,-1)
+						V.Local.iUB.Set(0)
+						V.uGlobal.uError.Redim(0,0)
+					F.Intrinsic.Control.Else
+						F.Intrinsic.Math.Add(V.uGlobal.uError.UBound,1,V.Local.iUB)
+						V.uGlobal.uError.RedimPreserve(0,V.Local.iUB)
+					F.Intrinsic.Control.EndIf
+
+					V.uGlobal.uError(v.Local.iUB)!Row.Set(V.uGlobal.uISS(v.Local.i)!Row)
+					V.Local.bEnt.Set(True)
+				F.Intrinsic.Control.EndIf
+
+				V.uGlobal.uError(v.Local.iUB)!SeqFlag.Set("Work order material sequence closed")
+				V.Local.bEnt.Set(True)
+				F.Intrinsic.Control.GoTo("Error")
+
+			F.Intrinsic.Control.ElseIf(V.Args.Return,<>,"WO")
+				V.uGlobal.uISS(v.Local.i)!Seq.Set(V.Args.Seq)
+			F.Intrinsic.Control.EndIf
+'F.Intrinsic.Debug.InvokeDebugger
+F.Intrinsic.Debug.Stop
+
+			F.Intrinsic.Control.If(V.uGlobal.uISS(V.Local.i)!Seq.Trim,<>,"","AND",V.uGlobal.uISS(v.Local.i)!Seq,<>,"995000")
+				F.Intrinsic.Control.CallSub(Openqty_chk,"ISQty",V.uGlobal.uISS(V.Local.i)!Qty,"WO",V.Local.sTemp,"Seq",V.uGlobal.uISS(V.Local.i)!Seq,"Row",V.Local.i)
+				F.Intrinsic.Control.If(V.Args.Return,=,"True")
+
+					F.Intrinsic.Control.If(V.Local.bEnt,=,False)
+						Function.Intrinsic.Control.If(V.uGlobal.uError.UBound,=,-1)
+							V.Local.iUB.Set(0)
+							V.uGlobal.uError.Redim(0,0)
+						F.Intrinsic.Control.Else
+							F.Intrinsic.Math.Add(V.uGlobal.uError.UBound,1,V.Local.iUB)
+							V.uGlobal.uError.RedimPreserve(0,V.Local.iUB)
+						F.Intrinsic.Control.EndIf
+'						V.uGlobal.uError(v.Local.iUB)!Row.Set(V.uGlobal.uISS(v.Local.i)!Row)
+'						V.uGlobal.uError(v.Local.iUB)!Row.Set(V.Args.Rows.Long)
+						V.uGlobal.uError(v.Local.iUB)!Row.Set(V.Args.Rows.Long)
+						V.uGlobal.uError(v.Local.iUB)!Stock.Set("No Quantity Open for the Work Order")
+						V.Local.bEnt.Set(True)
+						F.Intrinsic.Control.GoTo("Error")
+					F.Intrinsic.Control.EndIf
+'					V.uGlobal.uError(v.Local.iUB)!Row.Set(V.uGlobal.uISS(v.Local.i)!Row)
+
+				F.Intrinsic.Control.EndIf
+
+			F.Intrinsic.Control.EndIf
+F.Intrinsic.Debug.Stop
+
+			F.Intrinsic.Control.CallSub(Part_check,"Part",V.uGlobal.uISS(V.Local.i)!Part,"QTY",V.uGlobal.uISS(V.Local.i)!Qty,"WO",V.uGlobal.uISS(V.Local.i)!Wo,"Suf",V.uGlobal.uISS(V.Local.i)!Suf,"Seq",V.uGlobal.uISS(V.Local.i)!Seq,"Row",V.Local.i)
+			F.Intrinsic.Control.If(V.Args.Return,=,"True")
+
+				F.Intrinsic.Control.If(V.Local.bEnt,=,False)
+					Function.Intrinsic.Control.If(V.uGlobal.uError.UBound,=,-1)
+						V.Local.iUB.Set(0)
+						V.uGlobal.uError.Redim(0,0)
+					F.Intrinsic.Control.Else
+						F.Intrinsic.Math.Add(V.uGlobal.uError.UBound,1,V.Local.iUB)
+						V.uGlobal.uError.RedimPreserve(0,V.Local.iUB)
+					F.Intrinsic.Control.EndIf
+
+					V.uGlobal.uError(v.Local.iUB)!Row.Set(V.uGlobal.uISS(v.Local.i)!Row)
+					V.Local.bEnt.Set(True)
+				F.Intrinsic.Control.EndIf
+
+				V.uGlobal.uError(v.Local.iUB)!Part.Set("Not a valid Inventory Part")
+				V.Local.bEnt.Set(True)
+				F.Intrinsic.Control.GoTo("Error")
+			F.Intrinsic.Control.ElseIf(V.Args.Return,<>,"Part")
+				F.Intrinsic.Control.If(V.Args.RetOnHand.Float,<,V.uGlobal.uISS(V.Local.i)!Qty)
+					F.Intrinsic.Control.If(V.Local.bEnt,=,False)
+						Function.Intrinsic.Control.If(V.uGlobal.uError.UBound,=,-1)
+							V.Local.iUB.Set(0)
+							V.uGlobal.uError.Redim(0,0)
+						F.Intrinsic.Control.Else
+							F.Intrinsic.Math.Add(V.uGlobal.uError.UBound,1,V.Local.iUB)
+							V.uGlobal.uError.RedimPreserve(0,V.Local.iUB)
+						F.Intrinsic.Control.EndIf
+'						V.uGlobal.uError(v.Local.iUB)!Row.Set(V.uGlobal.uISS(v.Local.i)!Row)
+'						V.uGlobal.uError(v.Local.iUB)!Row.Set(V.Args.Rows.Long)
+						V.uGlobal.uError(v.Local.iUB)!Row.Set(V.Args.Rows.Long)
+						V.uGlobal.uError(v.Local.iUB)!Stock.Set("On Hand Inventory not available to issue")
+						V.Local.bEnt.Set(True)
+						F.Intrinsic.Control.GoTo("Error")
+					F.Intrinsic.Control.EndIf
+'					V.uGlobal.uError(v.Local.iUB)!Row.Set(V.uGlobal.uISS(v.Local.i)!Row)
+
+				F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.EndIf
+
+			F.Intrinsic.Control.Label("Error")
+			'Error
+			F.Intrinsic.Control.If(V.Local.bEnt,=,True)
+				F.Intrinsic.Variable.UDTMultiFlag(V.uGlobal.uISS!Row,V.uGlobal.uISS(v.Local.i)!Row)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Next(V.Local.i)
+
+		F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uISS)
+		F.Intrinsic.Variable.UDTMultiFlag(V.uGlobal.uISS!Row,0)
+		F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uISS)
+
+		F.Intrinsic.Control.If(V.uGlobal.uLotBin.UBound,>=,0)
+			F.Intrinsic.Variable.UDTCopy(V.uGlobal.uLotBin,V.uGlobal.uISS,True)
+		F.Intrinsic.Control.EndIf
+
+		F.Intrinsic.Control.If(V.uGlobal.uError.UBound,>=,0)
+'			F.Intrinsic.UI.Msgbox("Some lines has Error")
+			F.Intrinsic.Variable.UDTToString(V.uGlobal.uError,"Row*!*WO*!*Part*!*Seq*!*Stock*!*seqflag",v.Ambient.NewLine,V.Ambient.Tab,V.Local.sRow)
+			F.Intrinsic.String.Concat(V.Caller.FilesDir,"\RANISS.txt",V.Local.sFile)
+			F.Intrinsic.File.String2File(V.Local.sFile,V.Local.sRow)
+			Gui.frmconfirm.cmdlog.Enabled(true)
+		F.Intrinsic.Control.EndIf
+
+		F.Intrinsic.Control.If(V.uGlobal.uISS.UBound,>=,0)
+			Gui.frmconfirm.cmdIssue.Enabled(True)
+		F.Intrinsic.Control.else
+			Gui.frmconfirm.cmdIssue.Enabled(False)
+'				F.Intrinsic.UI.Msgbox("No Lines to Issue")
+		F.Intrinsic.Control.EndIf
+
+
+	F.Intrinsic.Control.Else
+			F.Intrinsic.UI.Msgbox("Records not found")
+	F.Intrinsic.Control.EndIf
+
+	F.Automation.Generic.DestroyObject("SHEET")
+	F.Automation.Generic.DestroyObject("BOOK")
+	F.Automation.Generic.DestroyObject("EXCEL")
+
+	Function.ODBC.Connection!Conx.Close
+	Gui.frmISS..MousePointer(0)
+	Function.Intrinsic.UI.CloseWaitDialog
+
+	F.Intrinsic.Control.If(V.uGlobal.uError.UBound,>=,0)
+		Gui.frmISS..Visible(false)
+		Gui.frmconfirm..Show
+	F.Intrinsic.Control.elseIf(V.uGlobal.uISS.UBound,>=,0)
+		F.Intrinsic.Control.CallSub(Createissfile)
+	F.Intrinsic.Control.EndIf
+
+
+Function.Intrinsic.Control.EndIf
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Import_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3778_IssueMat.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Import.End
+
+program.sub.form1_unload.start
+
+
+F.Intrinsic.Control.End
+
+program.sub.form1_unload.End
+
+Program.Sub.WO_Check.Start
+F.Intrinsic.Control.SetErrorHandler("WO_Check_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+
+V.local.sQuery.Declare(String)
+V.Local.sRet.Declare(String)
+
+F.Intrinsic.Control.If(V.Args.WO.Trim,<>,"")
+	F.Intrinsic.String.Build("Select Job From v_Job_Header where ltrim(Job) + ltrim(Suffix) = '{0}' ",V.Args.WO.Trim,V.Local.sQuery)
+
+	F.ODBC.Connection!Conx.OpenRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.Conx!rst.EOF,=,True)
+		V.Local.sRet.Set("True")
+	F.Intrinsic.Control.EndIf
+	F.ODBC.Conx!rst.Close
+F.Intrinsic.Control.Else
+	V.Local.sRet.Set("True")
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Variable.AddRV("Return",V.Local.sRet)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("WO_Check_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3778_IssueMat.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.WO_Check.End
+
+Program.Sub.Part_Check.Start
+F.Intrinsic.Control.SetErrorHandler("Part_Check_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+
+
+V.local.sQuery.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.fQtyremain.Declare(Float)
+V.Local.iUB.Declare(Long)
+V.Local.fRetOnHand.Declare(Float)
+V.Local.bZero.Declare(Boolean,False)
+
+'F.Intrinsic.Debug.InvokeDebugger
+
+F.Intrinsic.Debug.Stop
+
+F.Intrinsic.Control.If(V.Args.Part.Trim,<>,"")
+	F.Intrinsic.String.Build("Select Part,flag_lot,Qty_OnHand From V_Inventory_Mstr where Part='{0}' ",V.Args.Part.Trim,V.Local.sQuery)
+
+	F.ODBC.Connection!Conx.OpenRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.Conx!rst.EOF,=,True)
+		V.Local.sRet.Set("True")
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Control.If(V.ODBC.Conx!rst.FieldVal!flag_lot,=,"Y")
+			F.Intrinsic.String.Build("select sum(quantity) as qty from Item_Master where part = '{0}' and allocated <> 'Y' and quantity > 0 ",V.Args.Part.Trim,V.Local.sQuery)
+			F.ODBC.Connection!Conx.OpenRecordsetRO("rst2",V.Local.sQuery)
+			F.Intrinsic.Control.If(V.ODBC.Conx!rst2.EOF,=,False)
+				V.Local.fRetOnHand.Set(V.ODBC.Conx!rst2.FieldVal!Qty)
+				F.Intrinsic.Control.If(V.ODBC.Conx!rst2.FieldVal!qty,>=,V.Args.qty.Float)
+
+					F.Intrinsic.String.Build("select part,location,Lot,Bin,Heat,Serial_Number,quantity from Item_Master where part = '{0}' and allocated <> 'Y' and quantity > 0 order by quantity desc ",V.Args.Part.Trim,V.Local.sQuery)
+					F.ODBC.Connection!Conx.OpenRecordsetRO("rst1",V.Local.sQuery)
+					F.Intrinsic.Control.If(V.ODBC.Conx!rst1.EOF,=,False)
+						V.Local.fQtyremain.Set(V.Args.qty.Float)
+					F.Intrinsic.Control.EndIf
+					
+					'loop through Item Master Record
+					F.Intrinsic.Control.DoUntil(V.ODBC.Conx!rst1.EOF,=,True)
+						F.Intrinsic.Control.If(V.Local.fQtyremain,>,0)
+							V.Local.bZero.Set(True)
+							Function.Intrinsic.Control.If(V.uGlobal.uLotBin.UBound,=,-1)
+								V.Local.iUB.Set(0)
+								V.uGlobal.uLotBin.Redim(0,0)
+							F.Intrinsic.Control.Else
+								F.Intrinsic.Math.Add(V.uGlobal.uLotBin.UBound,1,V.Local.iUB)
+								V.uGlobal.uLotBin.RedimPreserve(0,V.Local.iUB)
+							F.Intrinsic.Control.EndIf
+
+							V.uGlobal.uLotBin(v.Local.iUB)!Row.Set(V.uGlobal.uISS(v.Args.Row.Long)!Row)
+
+							V.uGlobal.uLotBin(v.Local.iUB)!WO.Set(V.Args.WO)
+							V.uGlobal.uLotBin(v.Local.iUB)!Suf.Set(V.Args.Suf)
+							V.uGlobal.uLotBin(v.Local.iUB)!Seq.Set(V.Args.Seq)
+							
+
+							V.uGlobal.uLotBin(v.Local.iUB)!Lot.Set(V.ODBC.Conx!rst1.FieldValtrim!Lot)
+							V.uGlobal.uLotBin(v.Local.iUB)!Bin.Set(V.ODBC.Conx!rst1.FieldValtrim!Bin)
+
+							V.uGlobal.uLotBin(v.Local.iUB)!part.Set(V.Args.Part.Trim)
+							V.uGlobal.uLotBin(v.Local.iUB)!loc.Set(V.ODBC.Conx!rst1.FieldValtrim!location)
+							V.uGlobal.uLotBin(v.Local.iUB)!Lot.Set(V.ODBC.Conx!rst1.FieldValtrim!Lot)
+							V.uGlobal.uLotBin(v.Local.iUB)!Bin.Set(V.ODBC.Conx!rst1.FieldValtrim!Bin)
+							V.uGlobal.uLotBin(v.Local.iUB)!Heat.Set(V.ODBC.Conx!rst1.FieldValtrim!Heat)
+							V.uGlobal.uLotBin(v.Local.iUB)!Serial.Set(V.ODBC.Conx!rst1.FieldValtrim!Serial_Number)
+						
+							
+							F.Intrinsic.Control.If(V.Local.fQtyremain,>=,V.ODBC.Conx!rst1.FieldValFloat!quantity)
+								F.Intrinsic.Math.Sub(V.Local.fQtyremain,V.ODBC.Conx!rst1.FieldValFloat!quantity,V.Local.fQtyremain)
+								'if we have  more or equal 0 then we can set the qty
+								F.Intrinsic.Control.If(V.Local.fQtyremain,>=,0)
+									V.uGlobal.uLotBin(v.Local.iUB)!Qty.Set(V.ODBC.Conx!rst1.FieldValFloat!quantity)
+								'we have less than 0 so we need to only grab the amount we need from the qty
+								F.Intrinsic.Control.Else
+									F.Intrinsic.Math.Add(V.Local.fQtyremain,V.ODBC.Conx!rst1.FieldValFloat!quantity,V.Local.fQtyremain)
+									V.uGlobal.uLotBin(v.Local.iUB)!Qty.Set(V.Local.fQtyremain)
+									'we don't have anymore so we can exit the loop
+									F.Intrinsic.Control.ExitDo
+								F.Intrinsic.Control.EndIf
+							F.Intrinsic.Control.Else
+								V.uGlobal.uLotBin(v.Local.iUB)!Qty.Set(V.Local.fQtyremain)
+								V.Local.fQtyremain.Set(0)
+							F.Intrinsic.Control.EndIf
+						F.Intrinsic.Control.Else
+							'Leave Item Master Record Loop if qtyremain less than zero
+							F.Intrinsic.Control.ExitDo
+						F.Intrinsic.Control.EndIf
+
+						'go to next record in item master.
+						F.ODBC.Conx!rst1.MoveNext
+					F.Intrinsic.Control.loop
+
+					F.ODBC.Conx!rst1.Close
+
+				F.Intrinsic.Control.Else
+					V.Local.fRetOnHand.Set(V.ODBC.Conx!rst2.FieldValFloat!qty)
+				F.Intrinsic.Control.EndIf
+
+			F.Intrinsic.Control.Else
+				V.Local.fQtyremain.Set(0)
+			F.Intrinsic.Control.EndIf
+
+			F.ODBC.Conx!rst2.Close
+
+		F.Intrinsic.Control.Else
+			V.Local.fRetOnHand.Set(V.ODBC.Conx!rst.FieldValFloat!Qty_OnHand)
+		F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.EndIf
+	F.ODBC.Conx!rst.Close
+F.Intrinsic.Control.Else
+	V.Local.sRet.Set("Part")
+F.Intrinsic.Control.EndIf
+
+'F.Intrinsic.Variable.AddRV("Return",V.Local.sRet,"RetOnHand",V.Local.RetOnHand)
+F.Intrinsic.Variable.AddRV("Rows",V.uGlobal.uISS(v.Args.Row.Long)!Row)
+F.Intrinsic.Variable.AddRV("Return",V.Local.sRet)
+F.Intrinsic.Variable.AddRV("RetOnHand",V.Local.fRetOnHand)
+
+					'if we are inside the loop set to zero	
+					F.Intrinsic.Control.If(V.Local.bZero,=,True)
+						F.Intrinsic.Variable.AddRV("Rows",V.uGlobal.uISS(v.Args.Row.Long)!Row)
+						V.uGlobal.uISS(v.Args.Row.Long)!Row.Set(0)
+					F.Intrinsic.Control.EndIf
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Part_Check_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3778_IssueMat.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Part_Check.End
+
+Program.Sub.Seq_Check.Start
+F.Intrinsic.Control.SetErrorHandler("Seq_Check_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+
+
+V.local.sQuery.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.sSeq.Declare(String)
+
+F.Intrinsic.Control.If(V.Args.WO.Trim,<>,"")
+	F.Intrinsic.String.Build("Select Seq,flag_closed From v_Job_operations where Job + Suffix ='{0}' and part = '{1}'  and LMO='M' ",V.Args.WO.Trim,V.Args.MatSeq.Trim,V.Local.sQuery)
+
+	F.ODBC.Connection!Conx.OpenRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.Conx!rst.EOF,=,True)
+'		V.Local.sSeq.set("995000")
+'		F.Intrinsic.Variable.AddRV("Seq",V.Local.sSeq)
+'		V.Local.sRet.Set("True")
+		'if the sequence is not found set the sequence to 995000
+		F.Intrinsic.Variable.AddRV("Seq","995000")
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Control.If(V.ODBC.conx!rst.FieldValtrim!flag_closed,=,"Y")
+			V.local.sRet.Set("TT")
+		F.Intrinsic.Control.Else
+			V.Local.sSeq.set(V.ODBC.conx!rst.FieldValtrim!Seq)
+			F.Intrinsic.Variable.AddRV("Seq",V.Local.sSeq)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+	F.ODBC.Conx!rst.Close
+F.Intrinsic.Control.Else
+	V.Local.sRet.Set("WO")
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Variable.AddRV("Return",V.Local.sRet)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Seq_Check_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3778_IssueMat.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Seq_Check.End
+
+Program.Sub.CreateISSFile.Start
+F.Intrinsic.Control.SetErrorHandler("CreateISSFile_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+
+V.Local.spart.Declare(String)
+V.Local.srev.Declare(String)
+V.Local.sloc.Declare(String)
+V.Local.slot.Declare(String)
+V.Local.sbin.Declare(String)
+V.Local.sheat.Declare(String)
+V.Local.sseriallength.Declare(String)
+V.Local.sjob.Declare(String)
+V.Local.ssuffix.Declare(String)
+V.Local.sseq.Declare(String)
+V.Local.sqty.Declare(String)
+V.Local.stempline.Declare(String)
+V.Local.sTemp.Declare(String)
+V.Local.sFile.Declare(String)
+V.Local.binstring.Declare(Boolean)
+V.Local.sqtyvalues.Declare(String)
+
+
+
+V.Local.i.Declare(Long)
+
+'F.Intrinsic.Debug.InvokeDebugger
+
+F.Intrinsic.Control.For(V.Local.i,0,V.uGlobal.uISS.UBound,1)
+
+	F.Intrinsic.String.RPad(V.uGlobal.uISS(V.Local.i)!part.Trim," ",20,V.Local.spart)
+	V.Local.srev.Set(V.Local.spart.Right3)
+	V.Local.spart.Set(V.Local.spart.Left17)
+'	F.Intrinsic.String.RPad(V.Local.srev," ",3,V.Local.srev)
+	F.Intrinsic.String.RPad(V.uGlobal.uISS(V.Local.i)!loc.Trim," ",2,V.Local.sloc)
+	F.Intrinsic.String.RPad(V.uGlobal.uISS(V.Local.i)!lot.Trim," ",15,V.Local.slot)
+	F.Intrinsic.String.RPad(V.uGlobal.uISS(V.Local.i)!bin.Trim," ",6,V.Local.sbin)
+	F.Intrinsic.String.RPad(V.uGlobal.uISS(V.Local.i)!heat.Trim," ",15,V.Local.sheat)
+	F.Intrinsic.String.RPad(V.uGlobal.uISS(V.Local.i)!serial.Trim," ",30,V.Local.sseriallength)
+	F.Intrinsic.String.RPad(V.uGlobal.uISS(V.Local.i)!wo.Trim," ",6,V.Local.sjob)
+	F.Intrinsic.String.RPad(V.uGlobal.uISS(V.Local.i)!Suf.Trim," ",3,V.Local.ssuffix)
+	F.Intrinsic.String.RPad(V.uGlobal.uISS(V.Local.i)!Seq.Trim," ",6,V.Local.sseq)
+
+	'check to see if there is a decimal in the qty value
+	V.Local.sqty.Set(V.uGlobal.uISS(V.Local.i)!Qty)
+
+	F.Intrinsic.String.IsInString(V.Local.sqty,".",True,V.Local.binstring)
+	F.Intrinsic.Control.If(V.Local.binstring,=,"True")
+		'if so format the qty for the upload
+		F.Intrinsic.String.Split(V.Local.sqty,".",V.Local.sqtyvalues)
+		F.Intrinsic.String.RPad(V.Local.sqtyvalues(1),"0",4,V.Local.sqtyvalues(1))
+		F.Intrinsic.String.LPad(V.Local.sqtyvalues(0),"0",11,V.Local.sqtyvalues(0))
+		F.Intrinsic.String.Build("{0}.{1}",V.Local.sqtyvalues(0),V.Local.sqtyvalues(1),V.Local.sqty)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.String.Build("{0}{1}",V.Local.sqty,".0000",V.Local.sqty)
+		F.intrinsic.String.LPad(V.Local.sqty,"0",16,V.Local.sqty)
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.String.Build("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10}",V.Local.spart,V.Local.srev,V.Local.sloc,V.Local.sqty,V.Local.slot,V.Local.sbin,V.Local.sheat,V.Local.sseriallength,V.Local.sjob,V.Local.ssuffix,V.Local.sseq,V.Local.stempline)
+
+'	F.Intrinsic.String.Build("{0}\{1}{2}{3}",V.caller.filesdir,"Z",V.Caller.CompanyCode,"ISSMAT",V.Local.sFile)
+	F.Intrinsic.String.Build("{0}\{1}{2}{3}{4}",V.Caller.FilesDir,"L",V.Caller.CompanyCode,V.Caller.Terminal,"MOPEN.txt",V.Local.sFile)
+
+	F.Intrinsic.Control.If(V.Local.i,=,0)
+		F.Intrinsic.file.String2File(V.Local.sFile,V.Local.stempline)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.File.Append2FileNewLine(V.Local.sFile,V.Local.stempline)
+	F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.Next(V.Local.i)
+
+
+'F.Intrinsic.Debug.InvokeDebugger
+F.Intrinsic.Debug.Stop
+'F.Intrinsic.Debug.CallWrapperDebugEnable
+''		F.Intrinsic.String.Build("{0}{1}{2}!*!{3}!*!{4}","Z",V.caller.companycode,"ISSMAT",V.Local.sIssueString,"NS",V.Local.sparams)
+'		F.Intrinsic.String.Build("Z{0}ISSMAT",V.Caller.CompanyCode,V.Local.sFile)
+		F.Intrinsic.String.Build("L{0}{1}MOPEN.txt",V.Caller.CompanyCode,V.Caller.Terminal,V.Local.sFile)
+
+		F.Global.General.CallWrapperSync(450100,V.Local.sFile)
+'		F.Intrinsic.Task.LaunchGSSSync("WIR100","-C",V.Local.sFile)
+'		F.Intrinsic.UI.Msgbox(Variable.Ambient.CallWrapperReturn)
+
+F.Intrinsic.UI.Msgbox("Process completed")
+
+F.Intrinsic.Control.CallSub(Summary)
+'F.Intrinsic.Control.CallSub(Form1_unload)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("CreateISSFile_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3778_IssueMat.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.CreateISSFile.End
+
+program.sub.cmdlog_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdlog_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+
+V.Local.sFile.Declare(String)
+F.Intrinsic.String.Concat(V.Caller.FilesDir,"\RANISS.txt",V.Local.sFile)
+
+Function.Intrinsic.Task.ShellExec(0,"open",V.Local.sFile,"","",1)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdlog_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3778_IssueMat.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.cmdlog_click.End
+
+program.sub.cmdissue_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdissue_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+
+F.Intrinsic.Control.CallSub(Createissfile)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdissue_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3778_IssueMat.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.cmdissue_click.End
+
+Program.Sub.OpenQty_Chk.Start
+F.Intrinsic.Control.SetErrorHandler("OpenQty_Chk_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.local.sQuery.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.fOpQty.Declare(Float)
+'F.Intrinsic.Debug.InvokeDebugger
+
+
+F.Intrinsic.Control.If(V.Args.WO.Trim,<>,"")
+	F.Intrinsic.String.Build("Select Part, Units, Hours_Estimated, Hours_Actual from Job_Operations where ltrim(Job)+ltrim(Suffix)='{0}' and Seq='{1}' and flag_Closed<>'Y' ",V.Args.WO.Trim,V.Args.Seq.Trim,V.Local.sQuery)
+	F.ODBC.Connection!Conx.OpenRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.Conx!rst.EOF,=,False)
+		F.Intrinsic.Math.Sub(V.ODBC.conx!rst.FieldVal!Hours_Estimated,V.ODBC.conx!rst.FieldVal!Hours_Actual,V.Local.fOpQty)
+		F.Intrinsic.Control.If(V.Local.fOpQty,>,0)
+			F.Intrinsic.Control.If(V.Args.ISQty.Float,>,V.Local.fOpQty)
+				V.uGlobal.uISS(v.Args.Row)!Qty.Set(V.Local.fOpQty)
+			F.Intrinsic.Control.Endif
+		F.Intrinsic.Control.Else
+			'we don't have any open qty so we need to pass it to the error log
+			F.Intrinsic.Variable.AddRV("Return","True")
+			F.Intrinsic.Variable.AddRV("Rows",V.uGlobal.uISS(v.Args.Row.Long)!Row)
+			V.uGlobal.uISS(v.Args.Row.Long)!Row.Set(0)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Endif
+	F.ODBC.Conx!rst.Close
+F.Intrinsic.Control.EndIf
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("OpenQty_Chk_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3778_IssueMat.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.OpenQty_Chk.End
+
+Program.Sub.summary.Start
+F.Intrinsic.Control.SetErrorHandler("summary_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+
+V.Local.iRUNID.Declare(Long)
+V.Local.iLOGID.Declare(Long)
+V.Local.sSel.Declare(String)
+V.Local.sParams.Declare(String)
+V.Local.sVals.Declare(String)
+V.Local.iRptid.Declare(Long)
+V.Local.sRpt.Declare(String)
+V.Local.sRptName.Declare(String)
+
+F.Global.BI.GetRunID(V.Local.iRUNID)
+F.Global.BI.StartLogging(V.Local.iRUNID,-1,-1,"",V.Local.iLOGID)
+'
+'F.Intrinsic.Debug.InvokeDebugger
+'F.Intrinsic.Debug.Stop
+'part qty wo suf BIRUNID
+
+Function.ODBC.Connection!Con.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass,7200)
+
+F.Intrinsic.String.Build("delete from GCG_3778_Summary where BIRUNID <> '{0}' ",V.Local.iRUNID,V.Local.sSel)
+F.ODBC.Connection!Con.Execute(V.Local.sSel)
+
+F.Intrinsic.Variable.SetUDTFieldReference(V.uGlobal.uISS!WO,"Wo")
+F.Intrinsic.Variable.SetUDTFieldReference(V.uGlobal.uISS!Suf,"Suffix")
+F.Intrinsic.Variable.SetUDTFieldReference(V.uGlobal.uISS!Part,"Part")
+F.Intrinsic.Variable.SetUDTFieldReference(V.uGlobal.uISS!Qty,"Qty")
+F.Intrinsic.Variable.SetUDTFieldReference(V.uGlobal.uISS!BIRUNID,"BIRUNID")
+F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uISS!BIRUNID,V.Local.iRUNID)
+'Select Wo,Suf,Part,Qty,BIRUNID from
+F.ODBC.Connection!Con.OpenRecordsetRW("rstSel","GCG_3778_Summary")
+F.Intrinsic.Variable.SaveUDTToRecordset("Con","rstSel","v.uGlobal.uISS")
+
+
+F.Intrinsic.String.Build("{0}\Custom\GCG_3778_Summary.rpt",V.Caller.BusintDir,V.Local.sRptName)
+F.Global.BI.InitializeReport(V.Local.sRptName,V.Local.sRptName,V.Local.iRptid)
+V.Local.sParams.set("BIRUNID")
+V.Local.sVals.Set(V.Local.iRUNID)
+F.Global.BI.StopLogging(V.Local.iLOGID)
+f.Global.BI.PrintReport(v.Local.iRptID,0,v.Local.sParams,v.Local.sVals,False)
+
+Function.ODBC.Connection!Con.Close
+
+F.Intrinsic.Control.CallSub(Form1_unload)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("summary_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3778_IssueMat.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.summary.End
+
+Program.Sub.Comments.Start
+${$0$}$$}$$}$12:00:00 AM$}$False
+Program.Sub.Comments.End
